@@ -1,0 +1,26 @@
+.c-header {
+  background: $nav-background-color;
+
+  :link,
+  :visited {
+    color:white;
+    text-decoration: none;
+  }
+
+  &__items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $text-font-size-large;
+    text-align: right;
+    padding-left: 1em
+  }
+
+  &__title {
+    margin: $spacing-small 0;
+    display: block;
+    font-weight: $text-font-weight-heavy;
+    text-transform: uppercase;
+    font-size: $text-font-size-large;
+  }
+}
