@@ -20,6 +20,17 @@
       </li>
       <li>
         <label class="form__control">
+          <span class="form__label">Add files</span>
+          <div class="form__input-wrap">
+            <input type="file" name="file" @change="addDocuments">
+          </div>
+          <ul class="form__listing">
+            <li v-for="doc in documentArr" @click="removeDoc(doc)">{{doc.name}}</li>
+          </ul>
+        </label>
+      </li>
+      <li>
+        <label class="form__control">
           <span class="form__label">Author</span>
           <div class="form__input-wrap">
             <input type="text" class="form__input" placeholder="Enter author name..." v-model="author" require required="required">
@@ -31,9 +42,13 @@
           <span class="form__label">External URL</span>
           <div class="form__input-wrap">
             <input type="text" class="form__input" placeholder="Enter external link..." v-model="link">
+            <button class="btn--primary form__listing-btn" type="button" name="button" @click="addLink(link)">add</button>
           </div>
+          <ul class="form__listing">
+            <li v-for="l in links" @click="removeLink(l)">{{l}}</li>
+          </ul>
         </label>
-      </li>
+      </li>          
       <li>
         <label class="form__control">
           <span class="form__label">Video URL</span>
@@ -74,7 +89,9 @@ export default {
       author: '',
       link: '',
       video: '',
-      links: []
+      documents: '',
+      links: [],
+      documentArr: []
     }
   },
   methods: {
@@ -86,7 +103,8 @@ export default {
           image: this.image,
           author: this.author,
           links: this.links,
-          video: this.video
+          video: this.video,
+          documents: this.documentArr
         })
         this.cardCreated()
       } else {
@@ -107,6 +125,27 @@ export default {
         this.links.push(this.link)
         this.link = ''
       }
+    },
+    addDocuments (e) {
+      let file = e.target.files || e.dataTransfer.files
+      this.createFile(file[0])
+    },
+    createFile (f) {
+      let reader = new FileReader()
+      reader.onload = (e) => {
+        let fullFile = {
+          result: e.target.result,
+          name: f.name
+        }
+        this.documentArr.push(fullFile)
+      }
+      reader.readAsDataURL(f)
+    },
+    removeDoc (doc) {
+      this.documentArr.splice(this.documentArr.indexOf(doc), 1)
+    },
+    removeLink (l) {
+      this.links.splice(this.links.indexOf(l), 1)
     }
   }
 }
