@@ -13,13 +13,24 @@
       </div>
       <div class="field">
         <p class="control">
+          <input  type="file" name="file" @change="addDocuments">
+          <ul>
+            <li v-for="doc in documentArr" @click="removeDoc(doc)">{{doc.name}}</li>
+          </ul>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control">
           <input class="input" type="text" placeholder="Enter author" v-model="author" require="">
         </p>
       </div>
       <div class="field">
         <p class="control">
           <input class="input" type="text" placeholder="Enter web link" v-model="link">
-          <button type="button" name="button" @click="addLink(link)">add</button>
+          <button class="button is-primary button--link" type="button" name="button" @click="addLink(link)">add</button>
+          <ul>
+            <li v-for="l in links" @click="removeLink(l)">{{l}}</li>
+          </ul>
         </p>
       </div>
       <div class="field">
@@ -53,7 +64,9 @@ export default {
       author: '',
       link: '',
       video: '',
-      links: []
+      documents: '',
+      links: [],
+      documentArr: []
     }
   },
   methods: {
@@ -65,7 +78,8 @@ export default {
           image: this.image,
           author: this.author,
           links: this.links,
-          video: this.video
+          video: this.video,
+          documents: this.documentArr
         })
         this.cardCreated()
       } else {
@@ -86,6 +100,27 @@ export default {
         this.links.push(this.link)
         this.link = ''
       }
+    },
+    addDocuments (e) {
+      let file = e.target.files || e.dataTransfer.files
+      this.createFile(file[0])
+    },
+    createFile (f) {
+      let reader = new FileReader()
+      reader.onload = (e) => {
+        let fullFile = {
+          result: e.target.result,
+          name: f.name
+        }
+        this.documentArr.push(fullFile)
+      }
+      reader.readAsDataURL(f)
+    },
+    removeDoc (doc) {
+      this.documentArr.splice(this.documentArr.indexOf(doc), 1)
+    },
+    removeLink (l) {
+      this.links.splice(this.links.indexOf(l), 1)
     }
   }
 }

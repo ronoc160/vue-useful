@@ -13,10 +13,14 @@
        <h1 class="c-card-info__content-title" v-if="links || link">Useful Resources</h1>
        <ul class="c-card-info__content-resources">
          <li> <a v-for="link in links" :href="link" target="_blank" class="c-card-info__content-resource">{{link}}</a></li>
-         <li>   <a :href="video" v-if="video" target="_blank" class="c-card-info__content-resource">video link</a></li>
+         <!-- <li> <a :href="video" v-if="video" target="_blank" class="c-card-info__content-resource">video link</a></li> -->
        </ul>
-
-
+    </section>
+    <section class="c-card-info__content" v-if="documents">
+      <h2 class="c-card-info__content-title">Useful downloads </h2>
+      <ul class="c-card-info__content-resources">
+        <li v-for="doc in documents"><a class="c-card-info__content-resource" :href="doc.result" download> {{doc.name}} </a></li>
+      </ul>
     </section>
   </div>
 </template>
@@ -30,7 +34,8 @@ export default {
       desc: '',
       video: '',
       links: '',
-      author: ''
+      author: '',
+      documents: ''
     }
   },
   created () {
@@ -47,10 +52,8 @@ export default {
       this.video = this.$route.params.cdata.video
       this.links = this.$route.params.cdata.links
       this.author = this.$route.params.cdata.author
+      this.documents = this.$route.params.cdata.documents
     }
   }
 }
 </script>
-
-<style lang="css">
-</style>
