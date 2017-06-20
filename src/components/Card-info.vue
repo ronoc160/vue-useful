@@ -10,9 +10,13 @@
        <p class="c-card-info__content-subtitle">{{desc}}</p>
     </section>
     <section class="c-card-info__content">
-       <h1 class="c-card-info__content-title" v-if="link">Useful Resources</h1>
-       <a :href="link" target="_blank" class="c-card-info__content-resource">{{link}}</a>
-       <a :href="video" v-if="video" target="_blank" class="c-card-info__content-resource">video link</a>
+       <h1 class="c-card-info__content-title" v-if="links || link">Useful Resources</h1>
+       <ul class="c-card-info__content-resources">
+         <li> <a v-for="link in links" :href="link" target="_blank" class="c-card-info__content-resource">{{link}}</a></li>
+         <li>   <a :href="video" v-if="video" target="_blank" class="c-card-info__content-resource">video link</a></li>
+       </ul>
+
+
     </section>
   </div>
 </template>
@@ -25,7 +29,7 @@ export default {
       image: '',
       desc: '',
       video: '',
-      link: '',
+      links: '',
       author: ''
     }
   },
@@ -41,7 +45,7 @@ export default {
       this.image = this.$route.params.cdata.image
       this.desc = this.$route.params.cdata.desc
       this.video = this.$route.params.cdata.video
-      this.link = this.$route.params.cdata.link
+      this.links = this.$route.params.cdata.links
       this.author = this.$route.params.cdata.author
     }
   }

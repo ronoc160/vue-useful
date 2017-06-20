@@ -2,9 +2,20 @@
 
   &__content {
     padding: 2em;
-    text-align: left
+    text-align: left;
+
+    &-resources{
+      display: flex;
+      flex-direction: column;
+
+      li {
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
   .back {
     float: left;
+    margin: 1em;
   }
 }

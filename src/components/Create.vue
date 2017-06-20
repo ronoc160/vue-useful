@@ -19,6 +19,7 @@
       <div class="field">
         <p class="control">
           <input class="input" type="text" placeholder="Enter web link" v-model="link">
+          <button type="button" name="button" @click="addLink(link)">add</button>
         </p>
       </div>
       <div class="field">
@@ -51,7 +52,8 @@ export default {
       image: '',
       author: '',
       link: '',
-      video: ''
+      video: '',
+      links: []
     }
   },
   methods: {
@@ -62,7 +64,7 @@ export default {
           desc: this.desc,
           image: this.image,
           author: this.author,
-          link: this.link,
+          links: this.links,
           video: this.video
         })
         this.cardCreated()
@@ -78,6 +80,12 @@ export default {
       this.link = ''
       this.video = ''
       this.ifCreated = true
+    },
+    addLink () {
+      if (this.link) {
+        this.links.push(this.link)
+        this.link = ''
+      }
     }
   }
 }
