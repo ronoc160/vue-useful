@@ -1,6 +1,33 @@
-@import "settings.variables.scss";
-@import "base.heading";
-@import "base.page";
-@import "app-header";
-@import "app-side-bar";
-@import "app-card-info";
+// Settings
+@import "settings/variables";
+
+// Tools
+@import "tools/mixins";
+@import "tools/placeholders";
+
+// Generic
+@import "generic/reset";
+
+// Elements
+@import "elements/page";
+@import "elements/general";
+@import "elements/typography";
+
+// Objects
+
+// Components
+@import "components/button";
+@import "components/blockquote";
+@import "components/card";
+@import "components/container";
+@import "components/content";
+@import "components/col";
+@import "components/form";
+@import "components/header";
+@import "components/link";
+@import "components/list";
+@import "components/nav";
+@import "components/section";
+@import "components/side-bar";
+
+// Utilities

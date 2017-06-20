@@ -1,0 +1,24 @@
+.nav {
+	perspective: em(1000);
+	transform-style: preserve3d;
+
+	&__item {
+		display: block;
+		padding: em(5) em(10);
+		color: white;
+		margin-bottom: em(15);
+		transition: all 0.1s linear;
+		box-shadow: 2px 2px 5px rgba(black,0);
+		backface-visibility: hidden;
+		border: 1px solid rgba($color2,0.4);
+
+		&:hover {
+			transform: rotateX(30deg);
+			box-shadow: 0 6px 5px rgba(black,0.25);
+		}
+	}
+
+	li:last-child &__item {
+		margin-bottom: 0;
+	}
+}

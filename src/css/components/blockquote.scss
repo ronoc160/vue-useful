@@ -1,0 +1,42 @@
+.blockquote {
+	background-color: $color2;
+	font-style: italic;
+	padding: em(7) em(10);
+	margin-bottom: em(15);
+	display: inline-block;
+	border-bottom: 2px solid $color1;
+
+	&__copy {
+		position: relative;
+		padding: em(20);
+
+		&:before {
+			$fz: 30;
+			font-size: em($fz);
+			content: "“";
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		&:after {
+			$fz: 30;
+			font-size: em($fz);
+			content: "”";
+			position: absolute;
+			bottom: em(-$lhBase,$fz);
+			right: 0;
+		}
+	}
+
+	&__author {
+		text-align: right;
+		display: block;
+		margin-right: em(22);
+		
+		&:before {
+			content: "--";
+			margin-right: em(10);
+		}
+	}
+}

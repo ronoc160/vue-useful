@@ -1,11 +1,7 @@
 <template>
-  <div>
-    <div class="column is-11">
-      <div class="columns is-multiline" name="fade" >
-        <card v-for="c in usedcard" :key="c.key" :cdata="c"></card>
-      </div>
-    </div>
-  </div>
+    <ul class="card__list" name="fade" >
+      <card v-for="c in usedcard" :key="c.key" :cdata="c"></card>
+    </ul>
 </template>
 
 <script>
@@ -38,34 +34,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css">
-.container-min{
-  width: 100%;
-  max-width: 960px;
-  margin: auto 0;
-}
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity:0
-}
-</style>

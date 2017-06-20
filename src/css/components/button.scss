@@ -1,0 +1,16 @@
+.btn {
+	@extend %btn;
+
+	&--primary {
+		@extend .btn;
+		$fz: 14;
+		@include font-size($fz);
+		background-color: lighten($color1,5%);
+		color: white;
+		padding: em(5,$fz) em(10,$fz);
+
+		&:hover {
+			background-color: $color1;
+		}
+	}
+}

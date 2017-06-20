@@ -1,0 +1,13 @@
+.header {
+	width: em($headerWidth);
+	padding: em(15);
+	min-height: 100vh;
+	position: relative;
+	background-color: $color1;
+
+	&__logo {
+		display: block;
+		width: em(75);
+		margin: 0 auto em(20);
+	}
+}
