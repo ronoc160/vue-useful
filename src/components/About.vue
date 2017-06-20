@@ -14,7 +14,7 @@
 
       <blockquote class="blockquote" cite="A wise man">
         <p class="blockquote__copy">Ask not what your team can do for you, but what you can do for your team</p>
-        <span class="blockquote__author">Steve Jobs</span>
+        <span class="blockquote__author">Conor Byrne</span>
       </blockquote>
 
       <p>Sooo currently this project is bare, it has been set up with a form where we can create some useful tips. It has some
