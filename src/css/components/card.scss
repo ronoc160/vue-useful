@@ -3,6 +3,7 @@
 	flex-direction: column;
 	transition: background-color 0.15s linear;
 	padding: em(20);
+	margin: em(10);
 	width: 100%;
 	border: 1px solid transparent;
 
@@ -15,6 +16,7 @@
 	// connected to the its children.
     &__list {
 		display: flex;
+		flex-flow: row wrap;
 	}
 
 	&__wrap {
