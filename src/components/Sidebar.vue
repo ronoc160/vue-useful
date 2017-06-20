@@ -1,13 +1,20 @@
 <template>
-  <div class="c-side-bar column is-3">
-    <aside class="c-side-bar__menu">
-      <ul class="c-side-bar__menu-list">
-        <router-link to="/" tag="li">About</router-link>
-        <router-link to="/create" tag="li">Create Useful Card</router-link>
-        <router-link to="/list" tag="li">Just a Useful List</router-link>
+  <header class="header">
+    <router-link class="header__logo" to="/"><img src="http://cnprogramming.com/images/documentation-small.png" alt="documentation"></router-link>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li>
+          <router-link to="/" class="nav__item">Just a Useful List</router-link>
+        </li>
+        <li>
+          <router-link to="/About" class="nav__item">About</router-link>
+        </li>
+        <li>
+          <router-link to="/create" class="nav__item">Create Useful Card</router-link>
+        </li>        
       </ul>
-    </aside>
-  </div>
+    </nav>
+  </header>
 </template>
 
 <script>
@@ -16,6 +23,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css">
-</style>

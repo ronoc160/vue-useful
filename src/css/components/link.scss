@@ -1,0 +1,12 @@
+.link {
+	color: firebrick;
+
+	&:hover {
+		text-decoration: underline;
+		color: darken(firebrick, 5%);
+	}
+
+	&--block {
+		display: block;
+	}
+}

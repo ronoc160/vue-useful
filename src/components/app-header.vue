@@ -1,19 +1,5 @@
 <template>
-  <div>
-    <div class="c-header">
-      <div class="container">
-        <div class="c-header__items">
-          <router-link class="c-header__title" to="/" >Useful</router-link>
-        </div>
-      </div>
-    </div>
-  </div>
+  <header class="header">
+    <router-link class="header__logo" to="/"><img src="http://developers.backbee.com/images/9e4/ae79b3e2baa71b28f1c6c0e050981.png" alt="documentation"></router-link>
+  </header>
 </template>
-
-<script>
-export default {
-}
-</script>
-
-<style lang="css">
-</style>
