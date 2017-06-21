@@ -1,6 +1,6 @@
 <template>
   <div class="c-card-info">
-    <router-link to="/list" class="back"> < back</router-link>
+    <router-link to="/" class="back"> < back</router-link>
     <div class="c-card-info__hero-body">
         <img :src="image" alt="">
     </div>

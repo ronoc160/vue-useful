@@ -22,7 +22,7 @@
 
       <p> BUT WHY STOP THERE MAN!! </p>
 
-      <p>There is a number of things left that can make this project great make our life easy.
+      <p>There is a number of things left that can make this project great &asnap; make our life easy.
       </p>
       <p> Just to list a few:</p>
 

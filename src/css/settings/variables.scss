@@ -5,14 +5,14 @@
 	$headerWidth: 		250;
 
 // Typography
-// -------------------------	
-	
+// -------------------------
+
 	// family
 	$ffBase: 			'Roboto', sans-serif;
 	$ffSecondary: 		Arial, sans-serif;
 	$ffHeadings: 		'Roboto', serif;
-	
-	
+
+
 	// style
 	$fzBase: 			16 !default;
 	$lhBase: 			19 !default;
@@ -33,4 +33,10 @@
 	$headingMargins: 					15,15,10,10;
 	$headingLineHeights: 				34,30,26,24;
 	$headingFontWeights: 				300, 300, 500, 500;
-
+	$break: (
+	    xs: 480px,
+	     s: 640px,
+	     m: 960px,
+	     l: 1200px,
+	    xl: 1440px
+	);

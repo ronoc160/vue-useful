@@ -21,7 +21,11 @@
 
 	&__wrap {
 		display: flex;
-		width: 100/3 * 1%;
+		width: 100%;
+
+		@include mq(map-get($break, m)) {
+				width: 100/3 * 1%;
+		}
 	}
 
 	&__image {
