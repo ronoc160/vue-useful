@@ -1,10 +1,22 @@
 $labelWidth: 120;
 
 .form {
-	width: em(600);
-	margin: 0 auto;
-	max-width: 100%;
+	margin-bottom: em(20);
+	position: relative;
 
+	&__logged {
+		background: grey;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: 1;
+		opacity: 0.1;
+		left: 0;
+		top: 0;
+	}
+	&__logged--in{
+		position: static;
+	}
 	&__control {
 		display: block;
 		margin-bottom: em(15);

@@ -1,5 +1,6 @@
 <template>
   <header class="header">
+    <Login></Login>
     <router-link class="header__logo" to="/"><img src="http://cnprogramming.com/images/documentation-small.png" alt="documentation"></router-link>
     <nav class="nav">
       <ul class="nav__list">
@@ -11,15 +12,17 @@
         </li>
         <li>
           <router-link to="/create" class="nav__item">Create Useful Card</router-link>
-        </li>        
+        </li>
       </ul>
     </nav>
   </header>
 </template>
 
 <script>
+import Login from '@/components/Login/Login'
 export default {
   components: {
+    Login
   }
 }
 </script>

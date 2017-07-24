@@ -1,9 +1,10 @@
 .content {
-	max-width: em(600);
+	max-width: em(800);
 	margin: 0 auto;
 
 	&__wrap {
 		width: calc(100% - #{em($headerWidth)});
+		margin-left: auto;
 		padding: em(30);
 	}
 }

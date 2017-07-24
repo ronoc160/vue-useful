@@ -26,7 +26,7 @@
       </p>
       <p> Just to list a few:</p>
 
-      <ul class="list--disc">
+      <ul class="list">
         <li>Search, </li>
         <li>Form validation,</li>
         <li>Differnet fields,</li>

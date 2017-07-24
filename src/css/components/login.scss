@@ -1,0 +1,21 @@
+.login{
+  &__input {
+    margin-bottom: 0.5rem;
+    padding: 0.7rem
+  }
+  button {
+    background: white;
+    border: none;
+    color: #2c3e50;
+    padding: 0.5rem;
+    border-radius: 2px;
+
+    &:hover{
+      background: lighten(#2c3e50, 70%);
+    }
+  }
+  &__error {
+    border: solid 1px red;
+    color: red;
+  }
+}

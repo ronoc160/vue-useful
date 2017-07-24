@@ -1,9 +1,5 @@
 .list {
 	margin: 0 0 em(15) em(20);
-
-	&--disc {
-		@extend .list;
-		list-style-type: disc;
-		list-style: disc;
-	}	
+	list-style-type: disc;
+	list-style: disc;
 }

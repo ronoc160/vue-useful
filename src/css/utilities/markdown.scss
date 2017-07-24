@@ -1,0 +1,45 @@
+// Markdown output overrides.
+
+.markdown {
+	ul {
+		@extend .list;
+	}
+
+	ol {
+		@extend .list;
+		list-style-type: decimal;
+		list-style: decimal;
+	}
+
+	a {
+		@extend .link;
+	}
+
+	blockquote {
+		@extend .blockquote;
+		position: relative;
+		padding: em(10) em(30);
+
+		> p {
+			margin-bottom: 0;
+		}
+		
+		&:before {
+			$fz: 30;
+			font-size: em($fz);
+			content: "“";
+			position: absolute;
+			top: 0;
+			left: em(8,$fz);
+		}
+
+		&:after {
+			$fz: 30;
+			font-size: em($fz);
+			content: "”";
+			position: absolute;
+			bottom: em(-$lhBase,$fz);
+			right: em(8,$fz);
+		}
+	}
+}

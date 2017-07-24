@@ -1,12 +1,13 @@
 <template>
   <form class="form">
+    <div class="form__logged" :class="{'form__logged--in':isLogged }"></div>
     <h1 class="alpha">Submit a useful</h1>
     <ul class="form__items">
       <li>
         <label class="form__control">
           <span class="form__label">Title</span>
           <div class="form__input-wrap">
-            <input type="text" class="form__input" placeholder="Enter title..." v-model="title" require required="required">
+            <input type="text" class="form__input" placeholder="Enter title..." v-model="cardObj.title" required="required">
           </div>
         </label>
       </li>
@@ -14,54 +15,65 @@
         <label class="form__control">
           <span class="form__label">Image URL</span>
           <div class="form__input-wrap">
-            <input type="text" class="form__input" placeholder="Enter URL..." v-model="image" require required="required">
+            <input type="text" class="form__input" placeholder="Enter URL..." v-model="cardObj.image_url" require required="required">
           </div>
         </label>
       </li>
-      <li>
+      <!-- <li>
         <label class="form__control">
           <span class="form__label">Add files</span>
           <div class="form__input-wrap">
             <input type="file" name="file" @change="addDocuments">
           </div>
           <ul class="form__listing">
-            <li v-for="doc in documentArr" @click="removeDoc(doc)">{{doc.name}}</li>
+            <li v-for="doc in cardObj.documentArr" @click="removeDoc(doc)">{{doc.name}}</li>
           </ul>
         </label>
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <label class="form__control">
           <span class="form__label">Author</span>
           <div class="form__input-wrap">
-            <input type="text" class="form__input" placeholder="Enter author name..." v-model="author" require required="required">
+            <input type="text" class="form__input" placeholder="Enter author name..." v-model="cardObj.author_id" require required="required">
           </div>
         </label>
-      </li>
+      </li> -->
       <li>
         <label class="form__control">
           <span class="form__label">External URL</span>
           <div class="form__input-wrap">
-            <input type="text" class="form__input" placeholder="Enter external link..." v-model="link">
-            <button class="btn--primary form__listing-btn" type="button" name="button" @click="addLink(link)">add</button>
+            <input type="text" class="form__input" placeholder="Enter external link..." v-model="cardObj.link">
+            <button class="btn--primary form__listing-btn" type="button" name="button" @click="addLink(cardObj.link)">add</button>
           </div>
           <ul class="form__listing">
-            <li v-for="l in links" @click="removeLink(l)">{{l}}</li>
+            <li v-for="l in cardObj.links" @click="removeLink(l)">{{l}}</li>
           </ul>
-        </label>
-      </li>          
-      <li>
-        <label class="form__control">
-          <span class="form__label">Video URL</span>
-          <div class="form__input-wrap">
-            <input type="text" class="form__input" placeholder="Enter video URL..." v-model="video">
-          </div>
         </label>
       </li>
       <li>
         <label class="form__control">
+          <span class="form__label">Upload .md file</span>
+          <div class="form__input-wrap">
+              <input type="file" name="file" class="form__input" @change="addMarkdown">
+          </div>
+          <ul class="form__listing">
+            <li v-for="l in cardObj.links" @click="removeLink(l)">{{l}}</li>
+          </ul>
+        </label>
+      </li>
+      <!-- <li>
+        <label class="form__control">
+          <span class="form__label">Video URL</span>
+          <div class="form__input-wrap">
+            <input type="text" class="form__input" placeholder="Enter video URL..." v-model="cardObj.video">
+          </div>
+        </label>
+      </li> -->
+      <li>
+        <label class="form__control">
           <span class="form__label">Content</span>
           <div class="form__input-wrap">
-            <textarea class="form__textarea" rows="10" placeholder="Enter content..." v-model="desc"></textarea>
+            <textarea class="form__textarea" rows="10" placeholder="Enter content..." v-model="cardObj.card_content"></textarea>
           </div>
         </label>
       </li>
@@ -77,75 +89,71 @@
 </template>
 
 <script>
-import {firebase} from '@/components/List'
+import { mapGetters } from 'vuex'
+import {markdown} from 'markdown'
 export default {
   data () {
     return {
       ifCreated: false,
       noImage: false,
-      title: '',
-      desc: '',
-      image: '',
-      author: '',
-      link: '',
-      video: '',
-      documents: '',
-      links: [],
-      documentArr: []
+      cardObj: {
+        title: '',
+        card_content: '',
+        image_url: '',
+        author_id: '',
+        link: '',
+        links: []
+      }
     }
   },
+  computed: mapGetters(['isLogged']),
   methods: {
     onSubmit () {
-      if (this.image.length) {
-        firebase.usedcard.push({
-          title: this.title,
-          desc: this.desc,
-          image: this.image,
-          author: this.author,
-          links: this.links,
-          video: this.video,
-          documents: this.documentArr
-        })
-        this.cardCreated()
-      } else {
-        this.noImage = true
+      let finishedCard = {
+        author_id: this.$store.state.userDetails.uuid,
+        title: this.cardObj.title,
+        image_url: this.cardObj.image_url,
+        card_content: this.cardObj.card_content,
+        links: this.cardObj.links,
+        tags: this.cardObj.tags
       }
+      this.cardObj.title = ''
+      this.cardObj.card_content = ''
+      this.cardObj.image_url = ''
+      this.cardObj.link = ''
+      this.$store.dispatch('createCard', finishedCard)
     },
+
     cardCreated () {
-      this.title = ''
-      this.desc = ''
-      this.image = ''
-      this.author = ''
-      this.link = ''
-      this.video = ''
       this.ifCreated = true
     },
     addLink () {
-      if (this.link) {
-        this.links.push(this.link)
-        this.link = ''
+      if (this.cardObj.link) {
+        this.cardObj.links.push(this.cardObj.link)
+        this.cardObj.link = ''
       }
     },
-    addDocuments (e) {
-      let file = e.target.files || e.dataTransfer.files
-      this.createFile(file[0])
+    removeLink (l) {
+      this.cardObj.links.splice(this.cardObj.links.indexOf(l), 1)
     },
     createFile (f) {
       let reader = new FileReader()
       reader.onload = (e) => {
-        let fullFile = {
-          result: e.target.result,
-          name: f.name
-        }
-        this.documentArr.push(fullFile)
+        var text = reader.result
+        this.cardObj.card_content = markdown.toHTML(text)
       }
-      reader.readAsDataURL(f)
+      reader.readAsText(f)
     },
-    removeDoc (doc) {
-      this.documentArr.splice(this.documentArr.indexOf(doc), 1)
-    },
-    removeLink (l) {
-      this.links.splice(this.links.indexOf(l), 1)
+    addMarkdown (e) {
+      let file = e.target.files || e.dataTransfer.files
+      if (file.length > 1) {
+        alert('Only one markdown file can be uploaded')
+        return
+      } else if (file[0].type !== 'text/markdown') {
+        alert('Only markdown files can be uploaded')
+        return
+      }
+      this.createFile(file[0])
     }
   }
 }
